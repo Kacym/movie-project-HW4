@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Header from "./components/header/Header";
+import MainContainer from "./components/main/MainContainer";
+import Modal from "./components/modal/Modal";
+import Backdrop from "./components/modal/Backdrop";
+import { movies } from "./components/movies/constants";
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+
+  const [todos, setTodos] = useState(movies);
+
+  function openAndCloseModal() {
+    setShowModal((prev) => !prev);
+  }
+
+  function deleteMovieById(id) {
+    const filteredArray = todos.filter((item) => item.id !== id)
+    setTodos(filteredArray)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {showModal && (
+        <div>
+          <Backdrop onClick={openAndCloseModal} />
+          <Modal
+            closeModalHandler={openAndCloseModal}
+            todos={todos}
+            setTodos={setTodos}
+          />
+        </div>
+      )}
+      <Header showModalHandler={openAndCloseModal} />
+      <MainContainer todos={todos} deleteMovieById={deleteMovieById} />
     </div>
   );
 }

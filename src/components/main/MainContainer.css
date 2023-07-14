@@ -1,0 +1,9 @@
+#main {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+.movie__list {
+    width: 90%;
+    list-style: none;
+}
