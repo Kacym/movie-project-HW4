@@ -3,6 +3,7 @@ import MovieItem from "./movieItem/MovieItem";
 import { styled } from "styled-components";
 
 const MainContainer = ({ todos, deleteMovieById }) => {
+
   return (
     <StyledMain>
       <MovieList>

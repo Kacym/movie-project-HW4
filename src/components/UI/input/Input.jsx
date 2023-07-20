@@ -1,9 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { styled } from "styled-components";
 
-const Input = (props) => {
+const Input = forwardRef((props, ref) => {
   return (
     <StyledInput
+      ref={ref}
       min={props.min}
       max={props.max}
       onChange={props.value}
@@ -11,7 +12,7 @@ const Input = (props) => {
       type={props.inputType}
     />
   );
-};
+});
 
 const StyledInput = styled.input`
   height: 50%;
