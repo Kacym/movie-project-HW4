@@ -1,17 +1,33 @@
 import React from "react";
 import MovieItem from "./movieItem/MovieItem";
-import "./MainContainer.css";
+import { styled } from "styled-components";
 
 const MainContainer = ({ todos, deleteMovieById }) => {
   return (
-    <main id="main">
-      <ul className="movie_list">
+    <StyledMain>
+      <MovieList>
         {todos.map((movie) => {
-          return <MovieItem deleteMovieById={deleteMovieById} key={movie.id} movie={movie} />;
+          return (
+            <MovieItem
+              deleteMovieById={deleteMovieById}
+              key={movie.id}
+              movie={movie}
+            />
+          );
         })}
-      </ul>
-    </main>
+      </MovieList>
+    </StyledMain>
   );
 };
 
+const StyledMain = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+`;
+
+const MovieList = styled.ul`
+  width: 60%;
+  list-style: none;
+`;
 export default MainContainer;

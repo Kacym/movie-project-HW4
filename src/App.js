@@ -3,7 +3,6 @@ import "./App.css";
 import Header from "./components/header/Header";
 import MainContainer from "./components/main/MainContainer";
 import Modal from "./components/modal/Modal";
-import Backdrop from "./components/modal/Backdrop";
 import { movies } from "./components/movies/constants";
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
     <div className="App">
       {showModal && (
         <div>
-          <Backdrop onClick={openAndCloseModal} />
           <Modal
             closeModalHandler={openAndCloseModal}
             todos={todos}

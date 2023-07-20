@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Label from "../UI/label/Label";
 import Input from "../UI/input/Input";
-import "./NewMovieForm.css";
 import Button from "../UI/button/Button";
-import { movies } from "../movies/constants";
+import { styled } from "styled-components";
 
 const NewMovieForm = ({ closeModalHandler, todos, setTodos }) => {
   const [movieTitleInput, setMovieTitleInput] = useState("");
@@ -39,16 +38,16 @@ const NewMovieForm = ({ closeModalHandler, todos, setTodos }) => {
   }
 
   return (
-    <form className="new__movie__form">
-      <div className="new__movie__title">
+    <StyledNewMovieForm>
+      <StyledContainer className="new__movie__title">
         <Label htmlFor="movie-title" title="movie title" />
         <Input value={getMovieTitleInputValue} id="movie-title" />
-      </div>
-      <div className="new__movie__url">
+      </StyledContainer>
+      <StyledContainer className="new__movie__url">
         <Label htmlFor="movie-url" title="movie url" />
         <Input value={getMovieUrlInputValue} id="movie-url" />
-      </div>
-      <div className="new__movie__rating">
+      </StyledContainer>
+      <StyledContainer className="new__movie__rating">
         <Label htmlFor="movie-rating" title="movie rating" />
         <Input
           min="1"
@@ -57,17 +56,38 @@ const NewMovieForm = ({ closeModalHandler, todos, setTodos }) => {
           value={getMovieRatingInputValue}
           id="movie-rating"
         />
-      </div>
+      </StyledContainer>
 
-      <div className="new-movie-add-button">
+      <AddButtonContainer>
         <Button
           onClick={handleSubmit}
           color={{ backgroundColor: "#E77D3B" }}
           title="ADD MOVIE"
         />
-      </div>
-    </form>
+      </AddButtonContainer>
+    </StyledNewMovieForm>
   );
 };
+
+const StyledNewMovieForm = styled.form`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 25%;
+`;
+
+const AddButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+`;
 
 export default NewMovieForm;

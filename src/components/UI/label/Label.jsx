@@ -1,10 +1,15 @@
-import React from 'react'
-import "./Label.css"
+import React from "react";
+import { styled } from "styled-components";
 
 const Label = (props) => {
-  return (
-    <label htmlFor={props.htmlFor}>{props.title}</label>
-  )
-}
+  return <StyledLabel htmlFor={props.htmlFor}>{props.title}</StyledLabel>;
+};
 
-export default Label
+const StyledLabel = styled.label`
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-family: sans;
+  font-weight: bold;
+`;
+
+export default Label;
