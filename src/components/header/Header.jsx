@@ -3,6 +3,7 @@ import Button from "../UI/button/Button";
 import { styled } from "styled-components";
 
 const Header = ( {showModalHandler} ) => {
+  const zero = 0;
   return (
     <StyledHeader>
       <HeaderContainer className="header__container">
