@@ -6,6 +6,7 @@ import Modal from "./components/modal/Modal";
 import { movies } from "./components/movies/constants";
 
 function App() {
+
   const [showModal, setShowModal] = useState(false);
 
   const [todos, setTodos] = useState(movies);
@@ -15,23 +16,23 @@ function App() {
   }
 
   function deleteMovieById(id) {
-    const filteredArray = todos.filter((item) => item.id !== id)
-    setTodos(filteredArray)
+    const filteredArray = todos.filter((item) => item.id !== id);
+    setTodos(filteredArray);
   }
 
   return (
     <div className="App">
       {showModal && (
-        <div>
           <Modal
             closeModalHandler={openAndCloseModal}
             todos={todos}
             setTodos={setTodos}
           />
-        </div>
       )}
       <Header showModalHandler={openAndCloseModal} />
-      <MainContainer todos={todos} deleteMovieById={deleteMovieById} />
+      <MainContainer
+        deleteMovieById={deleteMovieById} 
+        todos={todos} />
     </div>
   );
 }

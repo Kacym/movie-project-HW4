@@ -2,19 +2,13 @@ import React from "react";
 import MovieItem from "./movieItem/MovieItem";
 import { styled } from "styled-components";
 
-const MainContainer = ({ todos, deleteMovieById }) => {
-
+const MainContainer = ({ deleteMovieById, todos }) => {
+  console.log(deleteMovieById);
   return (
     <StyledMain>
       <MovieList>
         {todos.map((movie) => {
-          return (
-            <MovieItem
-              deleteMovieById={deleteMovieById}
-              key={movie.id}
-              movie={movie}
-            />
-          );
+          return <MovieItem deleteMovieById={deleteMovieById} key={movie.id} movie={movie} />;
         })}
       </MovieList>
     </StyledMain>

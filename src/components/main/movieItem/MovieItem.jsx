@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../UI/button/Button";
 import { styled } from "styled-components";
+import DeleteMovieModal from "../../modal/DeleteMovieModal";
 
 const MovieItem = ({ movie, deleteMovieById }) => {
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+
+  function changeTheDeleteModalStateHandler() {
+    setIsDeleteModalVisible((prev) => !prev)
+  }
+  
   return (
+    <>
+    {
+      isDeleteModalVisible && (
+        <DeleteMovieModal closeModal={changeTheDeleteModalStateHandler} deleteMovieById={deleteMovieById} movieId={movie.id}/>
+      )
+    }
     <StyledMovieItem className="movie__item" key={movie.id}>
       <StyledImgContainer>
         <StyledImg src={movie.img} alt={movie.title} />
@@ -14,11 +27,12 @@ const MovieItem = ({ movie, deleteMovieById }) => {
         <Button
           color={{ backgroundColor: "red", marginRight: "20px" }}
           title="DELETE"
-          onClick={() => deleteMovieById(movie.id)}
+          onClick={changeTheDeleteModalStateHandler}
         />
         <Button color={{ backgroundColor: "gray" }} title="EDIT" />
       </MovieInfoContainer>
     </StyledMovieItem>
+    </>
   );
 };
 

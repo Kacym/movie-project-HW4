@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Label from "../UI/label/Label";
 import Input from "../UI/input/Input";
 import Button from "../UI/button/Button";
@@ -48,6 +48,10 @@ const NewMovieForm = ({ closeModalHandler, todos, setTodos }) => {
 
       <AddButtonContainer>
         <Button
+          onClick={closeModalHandler}
+          color={{ backgroundColor: "#E77D3B" }}
+          title="CANCEL"/>
+        <Button
           onClick={handleSubmit}
           color={{ backgroundColor: "#E77D3B" }}
           title="ADD MOVIE"
@@ -76,6 +80,7 @@ const AddButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 40px;
+  gap: 20px;
 `;
 
 export default NewMovieForm;
