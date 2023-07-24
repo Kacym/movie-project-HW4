@@ -20,6 +20,9 @@ const StyledButton = styled.button`
   border: none;
   color: white;
   cursor: pointer;
+  &:hover {
+    opacity: 90%;
+  }
   &:active {
     opacity: 80%;
   }

@@ -20,8 +20,8 @@ const Modal = ({ closeModalHandler, todos, setTodos }) => {
 const StyledModal = styled.div`
   position: fixed;
   border-radius: 10px;
-  margin-top: 5%;
-  margin-left: 10%;
+  top: 70px;
+  margin-left: 100px;
   padding: 30px;
   background-color: white;
   width: 80%;
@@ -30,6 +30,7 @@ const StyledModal = styled.div`
 `;
 
 const Backdrop = styled.div`
+  top: 0;
   position: fixed;
   background-color: black;
   opacity: 80%;

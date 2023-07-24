@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import MainContainer from "./components/main/MainContainer";
 import Modal from "./components/modal/Modal";
 import { movies } from "./components/movies/constants";
+import ReactDOM from 'react-dom';
 
 function App() {
 
@@ -23,11 +24,14 @@ function App() {
   return (
     <div className="App">
       {showModal && (
-          <Modal
+          ReactDOM.createPortal(
+            <Modal
             closeModalHandler={openAndCloseModal}
             todos={todos}
             setTodos={setTodos}
-          />
+          />,
+          document.getElementById("modal")
+          )
       )}
       <Header showModalHandler={openAndCloseModal} />
       <MainContainer

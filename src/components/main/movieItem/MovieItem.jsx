@@ -2,36 +2,41 @@ import React, { useState } from "react";
 import Button from "../../UI/button/Button";
 import { styled } from "styled-components";
 import DeleteMovieModal from "../../modal/DeleteMovieModal";
+import ReactDOM from 'react-dom';
 
 const MovieItem = ({ movie, deleteMovieById }) => {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
   function changeTheDeleteModalStateHandler() {
-    setIsDeleteModalVisible((prev) => !prev)
+    setIsDeleteModalVisible((prev) => !prev);
   }
-  
+
   return (
     <>
-    {
-      isDeleteModalVisible && (
-        <DeleteMovieModal closeModal={changeTheDeleteModalStateHandler} deleteMovieById={deleteMovieById} movieId={movie.id}/>
-      )
-    }
-    <StyledMovieItem className="movie__item" key={movie.id}>
-      <StyledImgContainer>
-        <StyledImg src={movie.img} alt={movie.title} />
-      </StyledImgContainer>
-      <MovieInfoContainer>
-        <MovieTitle>{movie.title}</MovieTitle>
-        <MovieRating>{movie.rating}/5 stars</MovieRating>
-        <Button
-          color={{ backgroundColor: "red", marginRight: "20px" }}
-          title="DELETE"
-          onClick={changeTheDeleteModalStateHandler}
-        />
-        <Button color={{ backgroundColor: "gray" }} title="EDIT" />
-      </MovieInfoContainer>
-    </StyledMovieItem>
+      {isDeleteModalVisible &&
+        ReactDOM.createPortal(
+          <DeleteMovieModal
+            closeModal={changeTheDeleteModalStateHandler}
+            deleteMovieById={deleteMovieById}
+            movieId={movie.id}
+          />,
+          document.getElementById("modal")
+        )}
+      <StyledMovieItem className="movie__item" key={movie.id}>
+        <StyledImgContainer>
+          <StyledImg src={movie.img} alt={movie.title} />
+        </StyledImgContainer>
+        <MovieInfoContainer>
+          <MovieTitle>{movie.title}</MovieTitle>
+          <MovieRating>{movie.rating}/5 stars</MovieRating>
+          <Button
+            color={{ backgroundColor: "red", marginRight: "20px" }}
+            title="DELETE"
+            onClick={changeTheDeleteModalStateHandler}
+          />
+          <Button color={{ backgroundColor: "gray" }} title="EDIT" />
+        </MovieInfoContainer>
+      </StyledMovieItem>
     </>
   );
 };
